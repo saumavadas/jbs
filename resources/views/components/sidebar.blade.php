@@ -71,6 +71,24 @@
                 </a>
             </li>
         @endrole
+
+        <li class="nav-item">
+            <a href="{{ Route('admin.customers.index') }}"
+                class="nav-link {{ Route::is('admin.customers.index') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-hat-cowboy"></i>
+                <p>Customer</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ Route('admin.invoices.index') }}"
+            class="nav-link {{ Route::is('admin.invoices.index') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-list"></i>
+                <p>Invoice</p>
+            </a>
+        </li>
+
+        
+
         <li class="nav-item">
             <a href="{{ route('admin.profile.edit') }}"
                 class="nav-link {{ Route::is('admin.profile.edit') ? 'active' : '' }}">
