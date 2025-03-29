@@ -255,7 +255,7 @@
 
                                 <div class="col-lg-1">
                                     <div class="form-group">
-                                        <label for="name" class="form-label">Qty</label>
+                                        <label for="name" class="form-label">Quantity</label>
                                         
                                     </div>                                    
                                 </div>
@@ -309,7 +309,7 @@
                                     <div class="form-group">
                                         
                                         <input type="text" name="qty[]" id="qty0" value="{{ old('qty') }}"
-                                            class="form-control qty" required>
+                                            class="form-control qty quantity" required>
                                             <x-error>Qty</x-error>
                                     </div>                                    
                                 </div>
@@ -318,7 +318,7 @@
                                     <div class="form-group">
                                         
                                         <input type="text" name="rate[]" id="rate0" value="{{ old('rate') }}"
-                                            class="form-control rate" required>
+                                            class="form-control rate rupee-input" required>
                                             <x-error>Rate</x-error>
                                     </div>                                    
                                 </div>
@@ -433,6 +433,8 @@
         let rowCount = 0;
 
         $('#phone').inputmask('9999999999');
+
+        /*$('.quantity').inputmask('999');
         
         $('.rupee-input').inputmask(
         {
@@ -444,7 +446,7 @@
             digits: 2,
             rightAlign: true,
             allowMinus: false
-        });
+        });*/
        
 
         $('#select-customer').change(function()
@@ -481,7 +483,7 @@
                                     <div class="form-group">
                                         
                                         <input type="text" name="qty" id="qty${rowCount}" value="{{ old('qty') }}"
-                                            class="form-control qty" required>
+                                            class="form-control qty quantity" required>
                                             <x-error>Qty</x-error>
                                     </div>                                    
                                 </div>
@@ -490,7 +492,7 @@
                                     <div class="form-group">
                                         
                                         <input type="text" name="rate" id="rate${rowCount}" value="{{ old('rate') }}"
-                                            class="form-control rate" required>
+                                            class="form-control rate rupee-input" required>
                                             <x-error>Rate</x-error>
                                     </div>                                    
                                 </div>
@@ -526,7 +528,9 @@
                 `;
 
                 $('#the-rows').append(newRow);
-        });
+        });$(document).on('focus', '.phone-input', function() {
+    $(this).inputmask('999-999-9999');
+});
 
         $(document).on('click', '.del-row', function() 
         {
@@ -584,6 +588,28 @@
             $(this).unbind('submit').submit();
         });
     });
+
+
+$(document).on('focus', '.quantity', function() 
+{
+    $(this).inputmask('999');
+});
+
+
+$(document).on('focus', '.rupee-input', function() 
+{
+    $(this).inputmask(
+    {
+        alias: 'numeric',
+        prefix: '₹ ',
+        groupSeparator: ',',
+        radixPoint: '.',
+        autoGroup: true,
+        digits: 2,
+        rightAlign: true,
+        allowMinus: false    
+    });
+});
 
     </script>
     @endsection

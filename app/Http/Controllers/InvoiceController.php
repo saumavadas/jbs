@@ -83,9 +83,14 @@ class InvoiceController extends Controller
         return view('admin.invoices.show', compact('invoice', 'd_invoice'));
     }
 
-    public function edit(Invoice $invoice)
+    public function edit($id)
     {
-        return view('admin.invoices.edit', compact('invoice'));
+        $data = Invoice::where('id', decrypt($id))->first();
+        $customers = Customer::select('id', 'name', 'phone_no1')->get();
+
+        //Log::debug($data);
+
+        return view('admin.invoices.edit', compact('data', 'customers'));
     }
 
     public function update(Request $request, Invoice $invoice)
